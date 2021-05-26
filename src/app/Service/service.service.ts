@@ -6,6 +6,9 @@ import { Observable, of } from 'rxjs';
 import { IRecipient } from '../Models/Recipient';
 import { ITransfer, ICreateTransfer } from '../Models/Transfer';
 
+const API_URL = 'http://localhost:5000/api/v1'
+const API_VERSION = 'v1'
+
 const opts: any = {
   headers: new HttpHeaders(),
   responseType: 'text',
@@ -17,7 +20,7 @@ const opts: any = {
 export class ServiceService {
   constructor(private http: HttpClient) {}
 
-  private url = 'http://localhost:5000/api/v1';
+  private url = `${API_URL}/${API_VERSION}` ;
 
   getTransfers(): Observable<ITransfer[]> {
     return this.http.get<ITransfer[]>(`${this.url}/transfers/all`);

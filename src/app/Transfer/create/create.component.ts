@@ -18,6 +18,7 @@ export class CreateComponent implements OnInit {
   loading = false;
   id: string | null;
   title = 'Transferir';
+  alertError = false;
 
   constructor(
     private fb: FormBuilder,
@@ -27,15 +28,20 @@ export class CreateComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.createTransfer = this.fb.group({
-      amount: ['', Validators.required],
+      amount: ['', [Validators.required, Validators.min(100)]],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {}
 
+  closeAlertError() {
+    this.alertError = false;
+  }
+
   create() {
     if (this.createTransfer.invalid) {
+      this.alertError = true
       return;
     }
 
@@ -60,6 +66,7 @@ export class CreateComponent implements OnInit {
       },
       (err) => {
         this.loading = false;
+        this.alertError = true;
         console.log(err);
       }
     );

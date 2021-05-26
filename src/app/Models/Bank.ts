@@ -4,7 +4,5 @@ export interface IBank {
 }
 
 export interface IBankObj {
-  banks: [
-    IBank
-  ]
+  banks: IBank[]
 }

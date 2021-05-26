@@ -30,11 +30,10 @@ export class ServiceService {
   }
 
   createRecipient(recipient: IRecipient) {
-
     return this.http.post<Boolean>(`${this.url}/recipients`, recipient, opts);
   }
 
   createTransfer(transfer: ICreateTransfer) {
-    return this.http.post<Boolean>(`${this.url}/transfers`, transfer, opts);
+    return this.http.post<Boolean>(`${this.url}/transfers`, transfer, opts)
   }
 }

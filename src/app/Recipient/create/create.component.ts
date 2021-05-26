@@ -18,8 +18,10 @@ export class CreateComponent implements OnInit {
   submitted = false;
   loading = false;
   title = 'Nuevo Destinatario';
-  banks: IBank[] = [];
+  banks: string[] = [];
   typeAccounts = ['Cuenta Corriente', 'Cuenta Visa', 'Ahorro'];
+  alertSucc = false;
+  alertError = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,14 +44,27 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this._dataService.getBankList().subscribe(
       (data: IBankObj) => {
-        this.banks = data.banks;
+        this.banks = data.banks.map((data) => data.name);
       },
       (err) => console.log(err)
     );
   }
 
+  closeAlertSucc() {
+    this.alertSucc = false;
+  }
+
+  closeAlertError() {
+    this.alertError = false;
+  }
+
   create() {
     if (this.createRecipient.invalid) {
+      this.toastr.warning('Datos incorrectos', '', {
+        positionClass: 'toast-bottom-center',
+      });
+      console.log(this.createRecipient.errors);
+
       return;
     }
 
@@ -68,19 +83,12 @@ export class CreateComponent implements OnInit {
 
     this._service.createRecipient(recipient).subscribe(
       (data) => {
-        this.toastr.success(
-          'El Destinatario fue registrado con exito!',
-          'Destinatario Registrado',
-          {
-            positionClass: 'toast-bottom-right',
-          }
-        );
+        this.alertSucc = true;
         this.loading = false;
-        this.router.navigate(['/list']);
       },
       (err) => {
         this.loading = false;
-        console.log(err);
+        this.alertError = true;
       }
     );
   }

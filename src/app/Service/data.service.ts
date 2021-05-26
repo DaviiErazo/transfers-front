@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IBankObj } from '../Models/Bank'
 
-
-
 @Injectable({
   providedIn: 'root'
 })

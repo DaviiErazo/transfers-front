@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { IRecipient } from '../Models/Recipient';
 import { ITransfer, ICreateTransfer } from '../Models/Transfer';
 
-const API_URL = 'http://localhost:5000/api/v1'
+const API_URL = 'https://transfer-api.herokuapp.com/api'
 const API_VERSION = 'v1'
 
 const opts: any = {

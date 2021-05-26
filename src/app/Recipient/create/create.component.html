@@ -17,6 +17,7 @@
                                     placeholder="Nombre">
                             </div>
                         </div>
+
                         <div class="row mt-3">
                             <div class="col">
                                 <input type="text" class="form-control form-control-lg" formControlName="email"
@@ -27,16 +28,20 @@
                                     placeholder="Telefono">
                             </div>        
                         </div>
+
                         <div class="row mt-3">
                             <div class="col">
-                                <input type="text" class="form-control form-control-lg" formControlName="bank"
-                                    placeholder="Banco">
+                                <select name="bank" class="form-control form-control-lg" formControlName="bank" [(ngModel)]="banks">
+                                    <option [value]="bank" *ngFor="let bank of banks">{{bank.name}}</option>
+                                </select>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control form-control-lg" formControlName="type"
-                                    placeholder="Tiop de cuenta">
-                            </div>        
+                                <select name="type" class="form-control form-control-lg" formControlName="type" [(ngModel)]="typeAccounts">
+                                    <option [value]="type" *ngFor="let type of typeAccounts">{{type}}</option>
+                                </select>
+                            </div>
                         </div>
+
                         <div class="row mt-3">
                             <div class="col">
                                 <input type="text" class="form-control form-control-lg" formControlName="accountNumber"

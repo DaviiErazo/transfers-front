@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { IRecipient } from 'src/app/Models/Recipient';
-import { ServiceService } from 'src/app/Service/service.service';
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+
+import { IRecipient } from 'src/app/Models/Recipient';
+import { IBank, IBankObj } from 'src/app/Models/Bank';
+import { ServiceService } from 'src/app/Service/service.service';
+import { DataService } from 'src/app/Service/data.service';
 
 @Component({
   selector: 'app-create',
@@ -14,13 +17,15 @@ export class CreateComponent implements OnInit {
   createRecipient: FormGroup;
   submitted = false;
   loading = false;
-  title = 'Nuevo Destinatario ';
+  title = 'Nuevo Destinatario';
+  banks: IBank[] = [];
+  typeAccounts = ['Cuenta Corriente', 'Cuenta Visa', 'Ahorro'];
 
   constructor(
     private fb: FormBuilder,
     private _service: ServiceService,
+    private _dataService: DataService,
     private router: Router,
-    private aRoute: ActivatedRoute,
     private toastr: ToastrService
   ) {
     this.createRecipient = this.fb.group({
@@ -34,7 +39,14 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._dataService.getBankList().subscribe(
+      (data: IBankObj) => {
+        this.banks = data.banks;
+      },
+      (err) => console.log(err)
+    );
+  }
 
   create() {
     if (this.createRecipient.invalid) {
@@ -57,8 +69,8 @@ export class CreateComponent implements OnInit {
     this._service.createRecipient(recipient).subscribe(
       (data) => {
         this.toastr.success(
-          'El empleado fue registrado con exito!',
-          'Empleado Registrado',
+          'El Destinatario fue registrado con exito!',
+          'Destinatario Registrado',
           {
             positionClass: 'toast-bottom-right',
           }

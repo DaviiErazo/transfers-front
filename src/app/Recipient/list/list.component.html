@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="card">
+        <h3>Destinatarios</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Banco</th>
+                    <th>Tipo de cuenta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let recipient of recipients" class="text-center">
+                    <td>{{recipient.recipientName}}</td>
+                    <td>{{recipient.email}}</td>
+                    <td>{{recipient.bank}}</td>
+                    <td>{{recipient.type}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

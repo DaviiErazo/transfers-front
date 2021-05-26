@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="card">
+        <h3>Destinatarios</h3>
+    </div>
+    <div class="card-body">
+        <input 
+            type="text"
+            #box
+            placeholder="Ingrese nombre de destinatario"
+            (input)="searchRecipients(box.value)"
+        >
+      
+        <ng-container *ngIf="(recipientsDetail$ | async) as recipientsDetail">
+            <p>Destinatarios:</p>
+            <ul>
+            <li *ngFor="let recipient of recipientsDetail">
+                {{recipient.recipientName}}
+                {{recipient.bank}}
+                {{recipient.type}}
+
+            </li>
+            </ul>
+        </ng-container>
+    </div>
+</div>

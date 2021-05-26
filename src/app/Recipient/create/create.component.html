@@ -1,0 +1,56 @@
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3> {{title}}
+                    </h3>
+                    <span *ngIf="submitted && createRecipient.invalid" class="badge badge-danger">TODOS LOS CAMPOS SON OBLIGATORIOS</span>
+                    <form class="mt-4" [formGroup]="createRecipient" (ngSubmit)="create()">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="rut"
+                                    placeholder="Rut">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="name"
+                                    placeholder="Nombre">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="email"
+                                    placeholder="correo">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="phoneNumber"
+                                    placeholder="Telefono">
+                            </div>        
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="bank"
+                                    placeholder="Banco">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="type"
+                                    placeholder="Tiop de cuenta">
+                            </div>        
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <input type="text" class="form-control form-control-lg" formControlName="accountNumber"
+                                    placeholder="Nº de Cuenta">
+                            </div>     
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
+                        </div>
+                        <div *ngIf="loading" class="spinner-border float-right mt-3" role="status"></div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

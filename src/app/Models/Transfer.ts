@@ -6,3 +6,8 @@ export interface ITransfer {
   type: String;
   amount: number;
 }
+
+export interface ICreateTransfer {
+  recipientId: string;
+  amount: number;
+}

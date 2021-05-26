@@ -14,7 +14,6 @@ export class CreateComponent implements OnInit {
   createRecipient: FormGroup;
   submitted = false;
   loading = false;
-  id: string | null;
   title = 'Nuevo Destinatario ';
 
   constructor(
@@ -27,14 +26,12 @@ export class CreateComponent implements OnInit {
     this.createRecipient = this.fb.group({
       name: ['', Validators.required],
       rut: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       bank: ['', Validators.required],
-      phoneNumber: ['', Validators.required, Validators.minLength(2)],
+      phoneNumber: ['', [Validators.required, Validators.minLength(2)]],
       type: ['', Validators.required],
-      accountNumber: ['', Validators.required, Validators.minLength(5)],
+      accountNumber: ['', [Validators.required, Validators.minLength(5)]],
     });
-    this.id = this.aRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
   }
 
   ngOnInit(): void {}
@@ -74,12 +71,5 @@ export class CreateComponent implements OnInit {
         console.log(err);
       }
     );
-
-    /*
-    this.service.createRecipient(this.recipient).subscribe((data) => {
-      alert('Se Agrego con Exito...!!!');
-      this.router.navigate(['list']);
-    });
-    */
   }
 }

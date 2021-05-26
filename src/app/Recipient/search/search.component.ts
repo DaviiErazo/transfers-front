@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
-import { IRecipient } from 'src/app/Models/Recipient';
 import { ServiceService } from 'src/app/Service/service.service';
 import { liveSearch } from './live-search.operator';
 
@@ -21,6 +19,7 @@ export class SearchComponent implements OnInit {
     )
   );
   constructor(private service: ServiceService) {}
+
   ngOnInit(): void {}
 
   searchRecipients(recipientName: string) {

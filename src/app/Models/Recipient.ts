@@ -7,4 +7,5 @@ export interface IRecipient {
   bank: String;
   type: String;
   isDeleted?: boolean;
+  recipientId?: string;
 }

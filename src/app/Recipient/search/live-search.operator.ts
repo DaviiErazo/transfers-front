@@ -1,5 +1,9 @@
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs/operators';
 
 export function liveSearch<T, R>(
   dataCb: (query: T) => Observable<R>,
@@ -10,5 +14,5 @@ export function liveSearch<T, R>(
       debounceTime(delay),
       distinctUntilChanged(),
       switchMap(dataCb)
-    )
+    );
 }

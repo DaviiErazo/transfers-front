@@ -30,7 +30,7 @@
                         <td>{{recipient.bank}}</td>
                         <td>{{recipient.type}}</td>
                         <td>
-                            <button class="btn btn-warning">Transferir</button>
+                            <button class="btn btn-warning" [routerLink]="['/create_transfer/', recipient.recipientId]">Transferir</button>
                         </td>
                     </tr>
                 </tbody>

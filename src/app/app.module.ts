@@ -6,20 +6,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import { ListComponent } from './Recipient/list/list.component';
 import { CreateComponent } from './Recipient/create/create.component';
 
 import { ServiceService } from '../app/Service/service.service';
 import { SearchComponent } from './Recipient/search/search.component';
+import { HistoryComponent } from './Transfer/history/history.component';
 
 const routes: Routes = [
-  { path: 'list', component: ListComponent },
   { path: 'create', component: CreateComponent },
-  { path: 'search', component: SearchComponent }
+  { path: 'search', component: SearchComponent },
+  { path: 'history', component: HistoryComponent },
 ];
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, CreateComponent, SearchComponent],
+  declarations: [
+    AppComponent,
+    CreateComponent,
+    SearchComponent,
+    HistoryComponent,
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),

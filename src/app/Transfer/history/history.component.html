@@ -1,0 +1,25 @@
+<div class="container">
+    <h3>Historial</h3>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th>Nombre destinatario</th>
+                    <th>RUT</th>
+                    <th>Banco</th>
+                    <th>Tipo de cuenta</th>
+                    <th>Monto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transfer of transfers" class="text-center">
+                    <td>{{transfer.recipientName}}</td>
+                    <td>{{transfer.rut}}</td>
+                    <td>{{transfer.bank}}</td>
+                    <td>{{transfer.type}}</td>
+                    <td>{{transfer.amount}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

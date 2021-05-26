@@ -1,25 +1,42 @@
 <div class="container">
-    <div class="card">
-        <h3>Destinatarios</h3>
-    </div>
-    <div class="card-body">
+    <h3>Destinatarios</h3>
+    
+    <div style="margin-top: 30px; width: 100%">
         <input 
             type="text"
             #box
             placeholder="Ingrese nombre de destinatario"
             (input)="searchRecipients(box.value)"
+            style="width: 50%;"
         >
-      
-        <ng-container *ngIf="(recipientsDetail$ | async) as recipientsDetail">
-            <p>Destinatarios:</p>
-            <ul>
-            <li *ngFor="let recipient of recipientsDetail">
-                {{recipient.recipientName}}
-                {{recipient.bank}}
-                {{recipient.type}}
 
-            </li>
-            </ul>
-        </ng-container>
+        <div style="padding: 32px;">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th>Nombre destinatario</th>
+                        <th>Correo</th>
+                        <th>Banco</th>
+                        <th>Tipo de cuenta</th>
+                        <th>Transferir</th>
+                    </tr>
+                </thead>
+                <ng-container *ngIf="(recipientsDetail$ | async) as recipientsDetail">
+
+                <tbody>
+                    <tr *ngFor="let recipient of recipientsDetail" class="text-center">
+                        <td>{{recipient.recipientName}}</td>
+                        <td>{{recipient.email}}</td>
+                        <td>{{recipient.bank}}</td>
+                        <td>{{recipient.type}}</td>
+                        <td>
+                            <button class="btn btn-warning">Transferir</button>
+                        </td>
+                    </tr>
+                </tbody>
+                </ng-container>
+
+            </table>
+        </div>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IRecipient, Recipient } from '../Models/Recipient';
+import { IRecipient } from '../Models/Recipient';
+import { ITransfer } from '../Models/Transfer';
 import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
@@ -15,6 +16,12 @@ export class ServiceService {
   getRecipients(): Observable<IRecipient[]> {
     return this.http.get<IRecipient[]>(
       `${this.url}/recipients/byname?recipientName=D`
+    );
+  }
+
+  getTransfers(): Observable<ITransfer[]> {
+    return this.http.get<ITransfer[]>(
+      `${this.url}/transfers/all`
     );
   }
 

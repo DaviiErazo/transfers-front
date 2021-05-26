@@ -1,7 +1,18 @@
 
-<div class="container">
-  <button (click)="List()" class="btn btn-info">Listar</button>
-  <button (click)="Create()" class="btn btn-info" style="margin-left: 10px;">Nuevo</button>
+<div class="container" 
+  style="display: flex; align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    margin-top: 20px;"
+>
+<div class="card">
+</div>
+  <h5>Mi banco - Nueva transferencia</h5>
+  <div> 
+    <button (click)="Create()" class="btn btn-info" style="margin: 10px;">Nuevo Destinatario</button>
+    <button (click)="Search()" class="btn btn-info" style="margin: 10px;">Transferir</button>
+    <button (click)="History()" class="btn btn-info" style="margin: 10px;">Historial</button>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

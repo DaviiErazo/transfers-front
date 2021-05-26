@@ -10,12 +10,13 @@ export class AppComponent {
   title = 'Ripley';
 
   constructor(private router: Router) {}
-  List() {
-    this.router.navigate(['list']);
-  }
 
   Create() {
     this.router.navigate(['create']);
+  }
+
+  History() {
+    this.router.navigate(['history'])
   }
   
   Search() {

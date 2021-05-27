@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { IRecipient } from 'src/app/Models/Recipient';
 
 import { ServiceService } from 'src/app/Service/service.service';
 import { liveSearch } from './live-search.operator';
@@ -11,14 +12,16 @@ import { liveSearch } from './live-search.operator';
 })
 export class SearchComponent implements OnInit {
   private recipientNameSubject = new Subject<string>();
+  readonly recipientsDetail$: Observable<IRecipient[]>;
 
-  readonly recipientsDetail$ = this.recipientNameSubject.pipe(
-    liveSearch(
-      (recipientName) => this.service.getRecipientByName(recipientName),
-      250
-    )
-  );
-  constructor(private service: ServiceService) {}
+  constructor(private service: ServiceService) {
+    this.recipientsDetail$ = this.recipientNameSubject.pipe(
+      liveSearch(
+        (recipientName) => this.service.getRecipientByName(recipientName),
+        250
+      )
+    );
+  }
 
   ngOnInit(): void {}
 

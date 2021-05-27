@@ -60,11 +60,7 @@ export class CreateComponent implements OnInit {
 
   create() {
     if (this.createRecipient.invalid) {
-      this.toastr.warning('Datos incorrectos', '', {
-        positionClass: 'toast-bottom-center',
-      });
-      console.log(this.createRecipient.errors);
-
+      this.alertError = true;
       return;
     }
 
@@ -85,6 +81,7 @@ export class CreateComponent implements OnInit {
       (data) => {
         this.alertSucc = true;
         this.loading = false;
+        this.alertError = false;
       },
       (err) => {
         this.loading = false;

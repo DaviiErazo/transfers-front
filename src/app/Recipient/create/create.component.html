@@ -3,15 +3,11 @@
         <div class="col-lg-6 offset-lg-3">
             <div *ngIf="alertSucc" class="alert alert-success alert-dismissible fade show" style="text-align: center;" role="alert">
                 Destinatario registrado con éxito!! 🥳
-                <button type="button" class="closeAlertSucc()" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlertSucc()"></button>
             </div>
-            <div *ngIf="alertError" class="alert alert-success alert-dismissible fade show" style="text-align: center;" role="alert">
+            <div *ngIf="alertError" class="alert alert-danger alert-dismissible fade show" style="text-align: center;" role="alert">
                 <strong>UPss ha ocurrido un error!! 🤕</strong> Revisa que los datos ingresados sean correctos
-                <button type="button" class="closeAlertError()" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeAlertError()"></button>
             </div>
             <div class="card text-center">
                 <div class="card-body">
@@ -64,7 +60,6 @@
                         <div class="mt-3">
                             <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
                         </div>
-
                         <div *ngIf="loading" class="spinner-border float-right mt-3" role="status"></div>
                     </form>
                 </div>

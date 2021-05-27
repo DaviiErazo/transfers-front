@@ -4,8 +4,7 @@ import { ServiceService } from 'src/app/Service/service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-import { ICreateTransfer } from '../../Models/Transfer'
-
+import { ICreateTransfer } from '../../Models/Transfer';
 
 @Component({
   selector: 'app-create',
@@ -19,6 +18,7 @@ export class CreateComponent implements OnInit {
   id: string | null;
   title = 'Transferir';
   alertError = false;
+  alertSucc = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,9 +39,13 @@ export class CreateComponent implements OnInit {
     this.alertError = false;
   }
 
+  closeAlertSucc() {
+    this.alertError = true;
+  }
+
   create() {
     if (this.createTransfer.invalid) {
-      this.alertError = true
+      this.alertError = true;
       return;
     }
 
@@ -55,19 +59,18 @@ export class CreateComponent implements OnInit {
 
     this._service.createTransfer(transfer).subscribe(
       (data) => {
-        this.toastr.success(
-          'El empleado fue registrado con exito!',
-          'Empleado Registrado',
-          {
-            positionClass: 'toast-bottom-right',
-          }
-        );
-        this.router.navigate(['/history']);
+        this.alertSucc = true;
+        this.alertError = false;
+        this.loading = false;
+
+        setTimeout(() => {
+          this.router.navigate(['/history']);
+          this.alertSucc = false;
+        }, 3000);
       },
       (err) => {
         this.loading = false;
         this.alertError = true;
-        console.log(err);
       }
     );
   }
